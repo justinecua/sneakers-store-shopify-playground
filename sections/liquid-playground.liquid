@@ -1,0 +1,138 @@
+{{ 'liquid-playground.css' | asset_url | stylesheet_tag }}
+
+{% assign featured_product = section.settings.featured_product %}
+
+<section>
+  <header class="header">
+    <div class="header-left">
+      {% comment %} <h3>sneakers</h3> {% endcomment %}
+      <img
+        src="{{ 'logo.svg' | asset_url }}"
+        alt="Account Icon"
+        width="160"
+        height="24"
+        class="cart"
+      >
+      <ul>
+        <li>Collections</li>
+        <li>Men</li>
+        <li>Women</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+
+    <div class="header-right">
+      <img
+        src="{{ 'icon-cart.svg' | asset_url }}"
+        alt="Account Icon"
+        width="24"
+        height="24"
+        class="cart"
+      >
+      <img
+        src="{{ 'image-avatar.png' | asset_url }}"
+        alt="Account Icon"
+        width="55"
+        height="40"
+        class="profile-avatar"
+      >
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="left-content">
+      <div class="top">
+        {{ featured_product.featured_image | image_url: width: 700 | image_tag: class: 'product-main' }}
+      </div>
+      <div class="bottom">
+        {% for image in product.images %}
+          {{ image | image_url: width: 150 | image_tag: class: 'product-main-pics' }}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="right-content">
+      {% comment %}
+        <h4>{{ product.vendor }}</h4>
+        {{ featured_product.title }}
+
+        <p>
+          These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole,
+          they`ll withstand everything the weather can offer.
+        </p>
+        <div class="discount">
+          <span class="product-main-price">$125.00</span>
+          <div class="discount-banner">50%</div>
+        </div>
+        <div class="discount-crash-out"><span>$250.00</span></div>
+      {% endcomment %}
+      <div class="right-content">
+        <h4>{{ featured_product.vendor }}</h4>
+
+        <h1>{{ featured_product.title }}</h1>
+
+        <p>{{ featured_product.description }}</p>
+
+        <div class="discount">
+          <span class="product-main-price">
+            {{ featured_product.price | money }}
+          </span>
+        </div>
+      </div>
+      <div class="cart-buttons">
+        <div class="add-button-container">
+          <button>
+            <img
+              src="{{ 'icon-minus.svg' | asset_url }}"
+              alt="Account Icon"
+              width="25"
+              height="25"
+              class="product-main-icons"
+            >
+          </button>
+          <span>0</span>
+          <button>
+            <img
+              src="{{ 'icon-plus.svg' | asset_url }}"
+              alt="Account Icon"
+              width="25"
+              height="25"
+              class="product-main-icons"
+            >
+          </button>
+        </div>
+
+        <div class="add-to-cart-button-div">
+          <button class="add-to-cart-button">
+            <img
+              src="{{ 'icon-cart.svg' | asset_url }}"
+              alt="Account Icon"
+              width="25"
+              height="25"
+              class="cart-logo"
+
+            >Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Liquid Playground",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Liquid Playground"
+    }
+  ]
+}
+{% endschema %}
