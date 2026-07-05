@@ -46,7 +46,7 @@
         {{ featured_product.featured_image | image_url: width: 700 | image_tag: class: 'product-main' }}
       </div>
       <div class="bottom">
-        {% for image in product.images %}
+        {% for image in featured_product.images %}
           {{ image | image_url: width: 150 | image_tag: class: 'product-main-pics' }}
         {% endfor %}
       </div>
